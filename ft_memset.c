@@ -1,8 +1,20 @@
-void    *ft_memset(void *b, int c, size_t len)
+#include <stdlib.h>
+/*
+* The porpose of memset is to fill the memeory 
+* with a single byte repeated accross all positions 
+* each byte in memory must be assigned the same value
+*/
+void    *ft_memset(void *ptr, int value, size_t len)
 {
-     unsigned char *temp; 
-    /* make this temporary variable equals to void *b converted to unsigned char */
-    /* loop on the temporary variable while we didn't reach len */
-        /* in that loop, set the current byte equal to c converted to unsigned char */
-    /* return void *b */
+    if (ptr == NULL) {
+        return (NULL);
+    }
+    unsigned char *temp;
+    temp = (unsigned char *)ptr;
+    while(len > 0)
+    {
+        *temp++ = (unsigned char )value;
+        len--;
+    }
+    return (ptr);
 }

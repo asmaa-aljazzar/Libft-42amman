@@ -1,7 +1,8 @@
+#set anything about test as comment
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a
-SRCS = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_tolower.c ft_toupper.c ft_strlen.c
+SRCS = ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c ft_tolower.c ft_toupper.c ft_strlen.c ft_memset.c ft_bzero.c
 OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME) test
@@ -14,10 +15,6 @@ $(NAME): $(OBJS)
 
 test: $(NAME) $(SRCS) test-libft.c
 	$(CC) -o test test-libft.c -L. -lft
-#	if [$? -ne 0]; then\
-		echo "Compilation or linking faild"\
-		exit 1\
-	fi
 	./test
 
 clean:

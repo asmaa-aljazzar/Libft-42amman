@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 //  include guard ( prevent header from including multiple definition )
 #ifndef LIBFT_H
 #define LIBFT_H
@@ -13,6 +15,8 @@ int    ft_isprint(int c);
 int    ft_toupper(int c);
 int    ft_tolower(int c);
 int    ft_strlen(char *str);
+void   *ft_memset(void *ptr, int value, size_t len);
+void   ft_bzero(void *ptr, size_t len);
 
 //  String and memory manipulation
 

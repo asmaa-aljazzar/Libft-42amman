@@ -1,7 +1,17 @@
-void    ft_bzero(void *s, size_t n)
+#include <stdlib.h>
+#include <unistd.h>
+
+void    ft_bzero(void *ptr, size_t len)
 {
-    /* declare a temporary pointer */
-    /* make the temporary pointer equal to *s converted to a char * */
-    /* loop on the temporary pointer while we didn't reach n characters */
-        /* in that loop, set the current byte equal to 0 */
+    if (ptr == NULL){
+        write(1, "Null ",5);
+        return;
+    }
+    char *temp;
+    temp = (char *)ptr;
+    while(len > 0)
+    {
+        *temp++ = 0;
+        len--;
+    }
 }
