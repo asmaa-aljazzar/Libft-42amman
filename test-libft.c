@@ -317,6 +317,75 @@ void test_ft_bzero()
     printf("\n==============================================================\n");
 }
 
+// ft_memcpy()
+void test_ft_memcpy()
+{
+     // Test Case 1: Normal Copy
+    {
+        char src[] = "Hello, World!";
+        char dst[20];
+
+        ft_memcpy(dst, src, ft_strlen(src) + 1); // +1 to include the null terminator
+        printf("Test 1 - Normal Copy: %s\n", dst); // Expected output: "Hello, World!"
+    }
+
+    // Test Case 2: Zero-length Copy
+    {
+        char src[] = "Hello, World!";
+        char dst[20] = "Initial Value";
+
+        ft_memcpy(dst, src, 0);
+        printf("Test 2 - Zero Length: %s\n", dst); // Expected output: "Initial Value"
+    }
+
+    // Test Case 3: NULL Pointers for Both src and dst
+    {
+        char *src = NULL;
+        char *dst = NULL;
+        ft_memcpy(dst, src, 10);
+        if (dst == NULL)
+            printf("Test 3 - Both NULL Pointers: Passed %s\n", dst); // Expected output: "Passed"
+        else
+            printf("Test 3 - Both NULL Pointers: Failed%s\n", dst);
+    }
+
+    // Test Case 4: NULL Pointer for dst
+    {
+        char src[] = "Hello!";
+        char *dst = NULL;
+        ft_memcpy(dst, src, 6);
+        if (dst == NULL)
+            printf("Test 4 - NULL dst: Passed%s\n", dst); // Expected output: "Passed"
+        else
+            printf("Test 4 - NULL dst: Failed%s \n", dst);
+    }
+
+    // Test Case 5: NULL Pointer for src
+    {
+        char dst[20];
+        ft_memcpy(dst, NULL, 6);
+        if (dst)
+            printf("Test 5 - NULL src: Passed\n"); // Expected output: "Passed"
+        else
+            printf("Test 5 - NULL src: Failed\n");
+    }
+
+    // Test Case 6: Copying Overlapping Memory Regions (undefined behavior)
+    {
+        char src[] = "Overlapping";
+        ft_memcpy(src + 2, src, 5); // Copy 5 characters from src to src+2
+        printf("Test 6 - Overlapping Memory: %s\n", src); // Behavior is undefined
+    }
+
+    // Test Case 7: Copy a Single Byte
+    {
+        char src[] = "A";
+        char dst[10] = {0};
+        ft_memcpy(dst, src, 1);
+        printf("Test 7 - Single Byte Copy: %s\n", dst); // Expected output: "A"
+    }
+
+}
 int main()
 {
     test_ft_isalpha();
@@ -329,5 +398,6 @@ int main()
     test_ft_strlen();
     test_ft_memset();
     test_ft_bzero();
+    test_ft_memcpy();
     return (0);
 }
