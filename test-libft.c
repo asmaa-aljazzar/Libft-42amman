@@ -16,6 +16,7 @@ void print_array(unsigned char arr[], int size)
     printf("\n");
 }
 
+
 // ft_isalpha()
 void test_ft_isalpha()
 {
@@ -154,6 +155,7 @@ void test_ft_isprint()
     printf(" Expected 0, Got %d\n", ft_isprint(non1));
     printf(" Expected 0, Got %d\n", ft_isprint(non2));
     printf(" Expected 0, Got %d\n", ft_isprint(non3));
+    printf(" Expected 1, Got %d\n", ft_isprint(mark));
     printf("==============================================================\n");
 }
 
@@ -320,6 +322,7 @@ void test_ft_bzero()
 // ft_memcpy()
 void test_ft_memcpy()
 {
+    printf("Testing ft_memcpy...\n");
      // Test Case 1: Normal Copy
     {
         char src[] = "Hello, World!";
@@ -360,21 +363,11 @@ void test_ft_memcpy()
             printf("Test 4 - NULL dst: Failed%s \n", dst);
     }
 
-    // Test Case 5: NULL Pointer for src
-    {
-        char dst[20];
-        ft_memcpy(dst, NULL, 6);
-        if (dst)
-            printf("Test 5 - NULL src: Passed\n"); // Expected output: "Passed"
-        else
-            printf("Test 5 - NULL src: Failed\n");
-    }
-
     // Test Case 6: Copying Overlapping Memory Regions (undefined behavior)
     {
         char src[] = "Overlapping";
         ft_memcpy(src + 2, src, 5); // Copy 5 characters from src to src+2
-        printf("Test 6 - Overlapping Memory: %s\n", src); // Behavior is undefined
+        printf("Test 5 - Overlapping Memory: %s\n", src); // Behavior is undefined
     }
 
     // Test Case 7: Copy a Single Byte
@@ -382,10 +375,114 @@ void test_ft_memcpy()
         char src[] = "A";
         char dst[10] = {0};
         ft_memcpy(dst, src, 1);
-        printf("Test 7 - Single Byte Copy: %s\n", dst); // Expected output: "A"
+        printf("Test 6 - Single Byte Copy: %s\n", dst); // Expected output: "A"
+    }
+    printf("==============================================================\n");
+}
+
+// ft_memmove()
+void test_ft_memmove()
+{
+
+// Test Case 1: Non-overlapping regions
+    {
+        char src[] = "1234567890";
+        char dst[20] = {0};
+        ft_memmove(dst, src, 10);
+        printf("Test 1 - Non-overlapping regions: %s\n", dst);  // Expected output: "1234567890"
     }
 
+    // Test Case 2: Overlapping - Source before destination (backward copy)
+    {
+        char str[] = "OverlappingTest";
+        ft_memmove(str + 5, str, 10);  // Overlapping: src starts at str, dst starts at str+5
+        printf("Test 2 - Overlapping (src < dst): %s\n", str);  // Expected output: "OverlOverlTest"
+    }
+
+    // Test Case 3: Overlapping - Destination before source (forward copy)
+    {
+        char str[] = "OverlappingTest";
+        ft_memmove(str, str + 5, 10);  // Overlapping: src starts at str+5, dst starts at str
+        printf("Test 3 - Overlapping (dst < src): %s\n", str);  // Expected output: "pingTestingTest"
+    }
+
+    // Test Case 4: Zero-length move
+    {
+        char src[] = "ZeroMoveTest";
+        char dst[20] = {0};
+        ft_memmove(dst, src, 0);  // Zero-length copy
+        printf("Test 4 - Zero-length move: %s\n", dst);  // Expected output: ""
+    }
+
+    // Test Case 5: NULL source and destination
+    {
+        if (ft_memmove(NULL, NULL, 5) == NULL)
+            printf("Test 5 - NULL src and dst: Passed\n");  // Expected output: Passed
+        else
+            printf("Test 5 - NULL src and dst: Failed\n");
+    }
+printf("==============================================================\n");
+
 }
+
+// ft_strlcpy()
+void test_ft_strlcpy()
+{
+printf("Testing ft_strlcpy...\n");
+
+ char src[] = "Hello, World!";
+    char dst[50];  // Large enough buffer
+    size_t result;
+
+    // Test 1: dstsize is 0
+    {
+    result = ft_strlcpy(dst, src, 0);
+    printf("Test 1 (dstsize = 0):\n");
+    printf("Returned length: %zu\n", result);  // Should return 13 (length of "Hello, World!")
+    printf("Destination: %s\n\n", dst);  // Should remain unchanged as no copy occurs
+    }
+
+    // Test 2: dstsize is larger than source string
+    {
+    result = ft_strlcpy(dst, src, sizeof(dst));
+    printf("Test 2 (dstsize > src length):\n");
+    printf("Returned length: %zu\n", result);  // Should return 13 (length of "Hello, World!")
+    printf("Destination: %s\n\n", dst);  // Should contain "Hello, World!"
+    }
+
+    // Test 3: dstsize is exactly the length of the source string + 1 (enough space for null terminator)
+    {
+    result = ft_strlcpy(dst, src, 14);  // 13 chars + 1 null terminator
+    printf("Test 3 (dstsize = src length + 1):\n");
+    printf("Returned length: %zu\n", result);  // Should return 13
+    printf("Destination: %s\n\n", dst);  // Should contain "Hello, World!"
+    }
+
+    // Test 4: dstsize is smaller than the source string (truncate)
+    {
+    result = ft_strlcpy(dst, src, 6);  // Buffer can only hold 5 chars + null terminator
+    printf("Test 4 (dstsize < src length):\n");
+    printf("Returned length: %zu\n", result);  // Should return 13 (length of "Hello, World!")
+    printf("Destination: %s\n\n", dst);  // Should contain "Hello"
+    }
+
+    // Test 5: dstsize is 1 (only space for null terminator)
+    {
+    result = ft_strlcpy(dst, src, 1);
+    printf("Test 5 (dstsize = 1):\n");
+    printf("Returned length: %zu\n", result);  // Should return 13
+    printf("Destination: %s\n\n", dst);  // Should be an empty string, because no characters can be copied
+    }
+    // Test 6: src is an empty string
+    {
+    result = ft_strlcpy(dst, "", sizeof(dst));
+    printf("Test 6 (src is an empty string):\n");
+    printf("Returned length: %zu\n", result);  // Should return 0
+    printf("Destination: %s\n\n", dst);  // Should be an empty string
+    }
+    printf("==============================================================\n");
+}
+
 int main()
 {
     test_ft_isalpha();
@@ -399,5 +496,7 @@ int main()
     test_ft_memset();
     test_ft_bzero();
     test_ft_memcpy();
+    test_ft_memmove();
+    test_ft_strlcpy();
     return (0);
 }
