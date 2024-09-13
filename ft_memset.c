@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include "libft.h"
 /*
 * The porpose of memset is to fill the memeory 
 * with a single byte repeated accross all positions 

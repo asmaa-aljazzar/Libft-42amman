@@ -1,6 +1,7 @@
-#include <stdlib.h>
 #include "libft.h"
-
+/*
+* Copy src to dst to until reach specific size for dst 
+*/
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
     size_t srcsize = ft_strlen(src);

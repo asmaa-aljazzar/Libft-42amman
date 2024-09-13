@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include "libft.h"
 #include <wchar.h>
+#include <string.h>
+
 // wchar meaning wide-char
 // To print any array in hexadecimal format
 /*
@@ -483,6 +485,140 @@ printf("Testing ft_strlcpy...\n");
     printf("==============================================================\n");
 }
 
+// ft_strlcat()
+void test_ft_strlcat()
+{
+    printf("Testing ft_strlcat...\n");
+    char dst[20];
+    const char *src;
+    size_t dstsize;
+
+    /* Test case 1: Enough space to concatenate both strings */
+    strcpy(dst, "Hello ");
+    src = "World";
+    dstsize = 20;
+    printf("Test 1 (Enough space):\n");
+    printf("Result: %lu\n", ft_strlcat(dst, src, dstsize));
+    printf("Expected: %s, Result: %s\n\n", "Hello World", dst);
+
+    /* Test case 2: Not enough space to fit src fully */
+    strcpy(dst, "Hello ");
+    dstsize = 10;
+    printf("Test 2 (Limited space):\n");
+    printf("Result: %lu\n", ft_strlcat(dst, src, dstsize));
+    printf("Expected: %s, Result: %s\n\n", "Hello Wo", dst);
+
+    /* Test case 3: dstsize is too small to concatenate anything */
+    strcpy(dst, "Hello ");
+    dstsize = 6;
+    printf("Test 3 (No space to concatenate):\n");
+    printf("Result: %lu\n", ft_strlcat(dst, src, dstsize));
+    printf("Expected: %s, Result: %s\n\n", "Hello", dst);
+
+    /* Test case 4: Empty src string */
+    strcpy(dst, "Hello");
+    src = "";
+    dstsize = 20;
+    printf("Test 4 (Empty src):\n");
+    printf("Result: %lu\n", ft_strlcat(dst, src, dstsize));
+    printf("Expected: %s, Result: %s\n\n", "Hello", dst);
+
+    /* Test case 5: Empty dst string */
+    strcpy(dst, "");
+    src = "Hello";
+    dstsize = 20;
+    printf("Test 5 (Empty dst):\n");
+    printf("Result: %lu\n", ft_strlcat(dst, src, dstsize));
+    printf("Expected: %s, Result: %s\n\n", "Hello", dst);
+    
+    printf("==============================================================\n");
+}
+
+// ft_strchr
+void test_ft_strchr(){
+    printf("Testing ft_strchr...\n");
+    const char *test1 = "Hello, World!";
+    const char *test2 = "Libft Project";
+    const char *test3 = "";
+    
+    /* Testing with a character that exists in the string */
+    printf("Test 1 (Existing char):\n");
+    printf("Expected: %s\n", strchr(test1, 'W'));
+    printf("Result  : %s\n", ft_strchr(test1, 'W'));
+    printf("\n");
+
+    /* Testing with a character that does not exist */
+    printf("Test 2 (Non-existing char):\n");
+    printf("Expected: %p\n", strchr(test1, 'Z'));
+    printf("Result  : %p\n", ft_strchr(test1, 'Z'));
+    printf("\n");
+
+    /* Testing with the null terminator */
+    printf("Test 3 (Null terminator):\n");
+    printf("Expected: %s\n", strchr(test1, '\0'));
+    printf("Result  : %s\n", ft_strchr(test1, '\0'));
+    printf("\n");
+
+    /* Testing an empty string */
+    printf("Test 4 (Empty string):\n");
+    printf("Expected: %s\n", strchr(test3, 'a'));
+    printf("Result  : %s\n", ft_strchr(test3, 'a'));
+    printf("\n");
+
+    /* Testing with a repeated character */
+    printf("Test 5 (Repeated character):\n");
+    printf("Expected: %s\n", strchr(test2, 't'));
+    printf("Result  : %s\n", ft_strchr(test2, 't'));
+    printf("\n");
+    printf("==============================================================\n");
+}
+
+// ft_strrchr
+void test_ft_strrchr() {
+    printf("Testing ft_strrchr...\n");
+    const char *test1 = "Hello, World!";
+    const char *test2 = "Libft Project";
+    const char *test3 = "";
+
+    /* Testing with a character that exists in the string (appears more than once) */
+    printf("Test 1 (Existing char, multiple occurrences):\n");
+    printf("Expected: %s\n", strrchr(test1, 'o'));
+    printf("Result  : %s\n", ft_strrchr(test1, 'o'));
+    printf("\n");
+
+    /* Testing with a character that exists only once in the string */
+    printf("Test 2 (Existing char, single occurrence):\n");
+    printf("Expected: %s\n", strrchr(test1, 'W'));
+    printf("Result  : %s\n", ft_strrchr(test1, 'W'));
+    printf("\n");
+
+    /* Testing with a character that does not exist */
+    printf("Test 3 (Non-existing char):\n");
+    printf("Expected: %p\n", strrchr(test1, 'Z'));
+    printf("Result  : %p\n", ft_strrchr(test1, 'Z'));
+    printf("\n");
+
+    /* Testing with the null terminator */
+    printf("Test 4 (Null terminator):\n");
+    printf("Expected: %s\n", strrchr(test1, '\0'));
+    printf("Result  : %s\n", ft_strrchr(test1, '\0'));
+    printf("\n");
+
+    /* Testing an empty string */
+    printf("Test 5 (Empty string):\n");
+    printf("Expected: %s\n", strrchr(test3, 'a'));
+    printf("Result  : %s\n", ft_strrchr(test3, 'a'));
+    printf("\n");
+
+    /* Testing with a repeated character in another string */
+    printf("Test 6 (Repeated character in another string):\n");
+    printf("Expected: %s\n", strrchr(test2, 't'));
+    printf("Result  : %s\n", ft_strrchr(test2, 't'));
+    printf("\n");
+
+    printf("==============================================================\n");
+}
+
 int main()
 {
     test_ft_isalpha();
@@ -498,5 +634,8 @@ int main()
     test_ft_memcpy();
     test_ft_memmove();
     test_ft_strlcpy();
+    test_ft_strlcat();
+    test_ft_strchr();
+    test_ft_strrchr();
     return (0);
 }

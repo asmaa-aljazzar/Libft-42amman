@@ -1,4 +1,7 @@
-#include <stdlib.h>
+#include "libft.h"
+/*
+* same with memcpy but handle overlapping case
+*/
 void    *ft_memmove(void *dst, const void *src, size_t len)
 {
     unsigned char *temp_src;
@@ -14,8 +17,6 @@ void    *ft_memmove(void *dst, const void *src, size_t len)
 
     temp_dst = (unsigned char *)dst;
     temp_src = (unsigned char *)src;
-
-    /* if src and dst are overlapping */
     if (dst > src)
     {
         while (len-- > 0)

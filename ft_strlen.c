@@ -1,6 +1,6 @@
+#include "libft.h"
 // This function count the number of characters in a string
-#include <unistd.h>
-int    ft_strlen(char *str)
+size_t    ft_strlen(const char *str)
 {
     int     counter;
 
