@@ -535,7 +535,8 @@ void test_ft_strlcat()
 }
 
 // ft_strchr
-void test_ft_strchr(){
+void test_ft_strchr()
+{
     printf("Testing ft_strchr...\n");
     const char *test1 = "Hello, World!";
     const char *test2 = "Libft Project";
@@ -574,7 +575,8 @@ void test_ft_strchr(){
 }
 
 // ft_strrchr
-void test_ft_strrchr() {
+void test_ft_strrchr() 
+{
     printf("Testing ft_strrchr...\n");
     const char *test1 = "Hello, World!";
     const char *test2 = "Libft Project";
@@ -619,6 +621,62 @@ void test_ft_strrchr() {
     printf("==============================================================\n");
 }
 
+// ft_strncmp
+void test_ft_strncmp()
+{
+    printf("Testing ft_strncmp...\n");
+
+    const char *test1 = "Hello, World!";
+    const char *test2 = "Hello";
+    const char *test3 = "apple";
+    const char *test4 = "banana";
+    const char *test5 = "";
+    
+    /* Testing with equal strings, comparing fewer characters */
+    printf("Test 1 (Equal strings, compare fewer chars):\n");
+    printf("Expected: %d\n", strncmp(test1, "Hello, World!", 5));
+    printf("Result  : %d\n", ft_strncmp(test1, "Hello, World!", 5));
+    printf("\n");
+
+    /* Testing with equal strings, comparing entire length */
+    printf("Test 2 (Equal strings, compare full length):\n");
+    printf("Expected: %d\n", strncmp(test1, "Hello, World!", 13));
+    printf("Result  : %d\n", ft_strncmp(test1, "Hello, World!", 13));
+    printf("\n");
+
+    /* Testing with unequal strings, single difference within n */
+    printf("Test 3 (Unequal strings, difference within n):\n");
+    printf("Expected: %d\n", strncmp(test2, "HelLo", 5));
+    printf("Result  : %d\n", ft_strncmp(test2, "HelLo", 5));
+    printf("\n");
+
+    /* Testing with unequal strings, first string smaller */
+    printf("Test 4 (First string smaller):\n");
+    printf("Expected: %d\n", strncmp(test3, test4, 5));
+    printf("Result  : %d\n", ft_strncmp(test3, test4, 5));
+    printf("\n");
+
+    /* Testing with unequal strings, first string larger */
+    printf("Test 5 (First string larger):\n");
+    printf("Expected: %d\n", strncmp(test4, test3, 5));
+    printf("Result  : %d\n", ft_strncmp(test4, test3, 5));
+    printf("\n");
+
+    /* Testing with an empty string */
+    printf("Test 6 (Empty string vs non-empty string):\n");
+    printf("Expected: %d\n", strncmp(test5, test2, 5));
+    printf("Result  : %d\n", ft_strncmp(test5, test2, 5));
+    printf("\n");
+
+    /* Testing with n = 0 */
+    printf("Test 7 (n = 0, should return 0):\n");
+    printf("Expected: %d\n", strncmp(test2, test3, 0));
+    printf("Result  : %d\n", ft_strncmp(test2, test3, 0));
+    printf("\n");
+
+    printf("==============================================================\n");
+
+}
 int main()
 {
     test_ft_isalpha();
@@ -637,5 +695,6 @@ int main()
     test_ft_strlcat();
     test_ft_strchr();
     test_ft_strrchr();
+    test_ft_strncmp();
     return (0);
 }
