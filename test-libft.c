@@ -752,7 +752,62 @@ void test_ft_memcmp()
 // ft_memchr
 void test_ft_memchr()
 {
+    printf("Testing ft_memchr...\n");
 
+    const char *str1 = "Hello, World!";
+    const char *str2 = "Libft Project";
+    const char *empty = "";
+
+    // Test case 1: Find character 'o'
+    printf("Test 1 (Find 'o'):\n");
+    printf("Expected: %s\n", (char *)memchr(str1, 'o', strlen(str1)));
+    printf("Result  : %s\n", (char *)ft_memchr(str1, 'o', strlen(str1)));
+    printf("\n");
+
+    // Test case 2: Find character at the start ('L')
+    printf("Test 2 (Find 'L'):\n");
+    printf("Expected: %s\n", (char *)memchr(str2, 'L', strlen(str2)));
+    printf("Result  : %s\n", (char *)ft_memchr(str2, 'L', strlen(str2)));
+    printf("\n");
+
+    // Test case 3: Find character at the end ('!')
+    printf("Test 3 (Find '!'):\n");
+    printf("Expected: %s\n", (char *)memchr(str1, '!', strlen(str1)));
+    printf("Result  : %s\n", (char *)ft_memchr(str1, '!', strlen(str1)));
+    printf("\n");
+
+    // Test case 4: Non-existing character ('x')
+    printf("Test 4 (Non-existing 'x'):\n");
+    printf("Expected: %p\n", memchr(str1, 'x', strlen(str1)));
+    printf("Result  : %p\n", ft_memchr(str1, 'x', strlen(str1)));
+    printf("\n");
+
+    // Test case 5: Null terminator ('\0')
+    printf("Test 5 (Null terminator '\\0'):\n");
+    printf("Expected: %s\n", (char *)memchr(str1, '\0', strlen(str1) + 1));
+    printf("Result  : %s\n", (char *)ft_memchr(str1, '\0', strlen(str1) + 1));
+    printf("\n");
+
+    // Test case 6: Empty string (search for 'a')
+    printf("Test 6 (Empty string):\n");
+    printf("Expected: %p\n", memchr(empty, 'a', 5));
+    printf("Result  : %p\n", ft_memchr(empty, 'a', 5));
+    printf("\n");
+
+    // Test case 7: Searching for a character with n = 0 (should return NULL)
+    printf("Test 7 (Search with n = 0):\n");
+    printf("Expected: %p\n", memchr(str1, 'o', 0));
+    printf("Result  : %p\n", ft_memchr(str1, 'o', 0));
+    printf("\n");
+
+    // Test case 8: Searching for a character within binary data
+    unsigned char binary_data[] = {0x01, 0x02, 0x03, 0x04, 0x05};
+    printf("Test 8 (Binary data, find 0x03):\n");
+    printf("Expected: %p\n", memchr(binary_data, 0x03, 5));
+    printf("Result  : %p\n", ft_memchr(binary_data, 0x03, 5));
+    printf("\n");
+
+    printf("==============================================================\n");
 }
 
 int main()
@@ -775,5 +830,6 @@ int main()
     test_ft_strrchr();
     test_ft_strncmp();
     test_ft_memcmp();
+    test_ft_memchr();
     return (0);
 }
