@@ -677,6 +677,84 @@ void test_ft_strncmp()
     printf("==============================================================\n");
 
 }
+
+// ft_memcmp
+void test_ft_memcmp()
+{
+    printf("Testing ft_memcmp...\n");
+
+    // Test case 1: Equal strings, compare full length
+    printf("Test 1 (Equal strings, compare full length):\n");
+    printf("Expected: %d\n", memcmp("Hello", "Hello", 5));
+    printf("Result  : %d\n", ft_memcmp("Hello", "Hello", 5));
+    printf("\n");
+
+    // Test case 2: Unequal strings, difference at the first byte
+    printf("Test 2 (Unequal strings, difference at first byte):\n");
+    printf("Expected: %d\n", memcmp("Hello", "Jello", 5));
+    printf("Result  : %d\n", ft_memcmp("Hello", "Jello", 5));
+    printf("\n");
+
+    // Test case 3: Unequal strings, difference in the middle
+    printf("Test 3 (Unequal strings, difference in the middle):\n");
+    printf("Expected: %d\n", memcmp("Hello", "HelLo", 5));
+    printf("Result  : %d\n", ft_memcmp("Hello", "HelLo", 5));
+    printf("\n");
+
+    // Test case 4: Unequal strings, n is smaller than length
+    printf("Test 4 (Unequal strings, n is smaller than length):\n");
+    printf("Expected: %d\n", memcmp("Hello", "HelLo", 3));
+    printf("Result  : %d\n", ft_memcmp("Hello", "HelLo", 3));
+    printf("\n");
+
+    // Test case 5: Unequal strings, n is larger than length
+    printf("Test 5 (Unequal strings, n is larger than length):\n");
+    printf("Expected: %d\n", memcmp("Hello", "Helloo", 6));
+    printf("Result  : %d\n", ft_memcmp("Hello", "Helloo", 6));
+    printf("\n");
+
+    // Test case 6: Empty strings comparison
+    printf("Test 6 (Empty strings comparison):\n");
+    printf("Expected: %d\n", memcmp("", "", 5));
+    printf("Result  : %d\n", ft_memcmp("", "", 5));
+    printf("\n");
+
+    // Test case 7: Empty string compared to non-empty string
+    printf("Test 7 (Empty string vs non-empty string):\n");
+    printf("Expected: %d\n", memcmp("", "Hello", 5));
+    printf("Result  : %d\n", ft_memcmp("", "Hello", 5));
+    printf("\n");
+
+    // Test case 8: Binary data comparison (same data)
+    unsigned char bin1[] = {0x01, 0x02, 0x03, 0x04};
+    unsigned char bin2[] = {0x01, 0x02, 0x03, 0x04};
+    printf("Test 8 (Binary data comparison, same data):\n");
+    printf("Expected: %d\n", memcmp(bin1, bin2, 4));
+    printf("Result  : %d\n", ft_memcmp(bin1, bin2, 4));
+    printf("\n");
+
+    // Test case 9: Binary data comparison (different data)
+    unsigned char bin3[] = {0x01, 0x02, 0x03, 0x05};
+    printf("Test 9 (Binary data comparison, different data):\n");
+    printf("Expected: %d\n", memcmp(bin1, bin3, 4));
+    printf("Result  : %d\n", ft_memcmp(bin1, bin3, 4));
+    printf("\n");
+
+    // Test case 10: n = 0, should return 0
+    printf("Test 10 (n = 0, should return 0):\n");
+    printf("Expected: %d\n", memcmp("Hello", "World", 0));
+    printf("Result  : %d\n", ft_memcmp("Hello", "World", 0));
+    printf("\n");
+
+    printf("==============================================================\n");
+}
+
+// ft_memchr
+void test_ft_memchr()
+{
+
+}
+
 int main()
 {
     test_ft_isalpha();
@@ -696,5 +774,6 @@ int main()
     test_ft_strchr();
     test_ft_strrchr();
     test_ft_strncmp();
+    test_ft_memcmp();
     return (0);
 }
