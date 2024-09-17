@@ -810,6 +810,86 @@ void test_ft_memchr()
     printf("==============================================================\n");
 }
 
+// ft_atoi
+void test_ft_atoi()
+{
+    printf("Testing ft_atoi...\n");
+
+    // Test case 1: Simple positive number
+    printf("Test 1 (\"42\"):\n");
+    printf("Expected: %d\n", atoi("42"));
+    printf("Result  : %d\n", ft_atoi("42"));
+    printf("\n");
+
+    // Test case 2: Simple negative number
+    printf("Test 2 (\"-42\"):\n");
+    printf("Expected: %d\n", atoi("-42"));
+    printf("Result  : %d\n", ft_atoi("-42"));
+    printf("\n");
+
+    // Test case 3: Number with leading spaces
+    printf("Test 3 (\"   123\"):\n");
+    printf("Expected: %d\n", atoi("   123"));
+    printf("Result  : %d\n", ft_atoi("   123"));
+    printf("\n");
+
+    // Test case 4: Number with leading + sign
+    printf("Test 4 (\"+123\"):\n");
+    printf("Expected: %d\n", atoi("+123"));
+    printf("Result  : %d\n", ft_atoi("+123"));
+    printf("\n");
+
+    // Test case 5: Number with leading - sign and spaces
+    printf("Test 5 (\"   -123\"):\n");
+    printf("Expected: %d\n", atoi("   -123"));
+    printf("Result  : %d\n", ft_atoi("   -123"));
+    printf("\n");
+
+    // Test case 6: Zero input
+    printf("Test 6 (\"0\"):\n");
+    printf("Expected: %d\n", atoi("0"));
+    printf("Result  : %d\n", ft_atoi("0"));
+    printf("\n");
+
+    // Test case 7: String starting with a non-numeric character
+    printf("Test 7 (\"abc123\"):\n");
+    printf("Expected: %d\n", atoi("abc123"));
+    printf("Result  : %d\n", ft_atoi("abc123"));
+    printf("\n");
+
+    // Test case 8: String with numbers followed by letters
+    printf("Test 8 (\"123abc\"):\n");
+    printf("Expected: %d\n", atoi("123abc"));
+    printf("Result  : %d\n", ft_atoi("123abc"));
+    printf("\n");
+
+    // Test case 9: Empty string
+    printf("Test 9 (\"\"):\n");
+    printf("Expected: %d\n", atoi(""));
+    printf("Result  : %d\n", ft_atoi(""));
+    printf("\n");
+
+    // Test case 10: String with just spaces
+    printf("Test 10 (\"   \"):\n");
+    printf("Expected: %d\n", atoi("   "));
+    printf("Result  : %d\n", ft_atoi("   "));
+    printf("\n");
+
+    // Test case 11: Maximum integer value
+    printf("Test 11 (\"2147483647\"):\n");
+    printf("Expected: %d\n", atoi("2147483647"));
+    printf("Result  : %d\n", ft_atoi("2147483647"));
+    printf("\n");
+
+    // Test case 12: Minimum integer value
+    printf("Test 12 (\"-2147483648\"):\n");
+    printf("Expected: %d\n", atoi("-2147483648"));
+    printf("Result  : %d\n", ft_atoi("-2147483648"));
+    printf("\n");
+
+    printf("==============================================================\n");
+
+}
 int main()
 {
     test_ft_isalpha();
@@ -831,5 +911,6 @@ int main()
     test_ft_strncmp();
     test_ft_memcmp();
     test_ft_memchr();
+    test_ft_atoi();
     return (0);
 }
