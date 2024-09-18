@@ -890,8 +890,179 @@ void test_ft_atoi()
     printf("==============================================================\n");
 
 }
+// ft_calloc()
+void test_ft_calloc()
+{
+ printf("Testing ft_calloc...\n");
+
+    // Test case 1: Allocate memory for 5 integers
+    printf("Test 1 (5 integers):\n");
+    int *arr1 = (int *)ft_calloc(5, sizeof(int));
+    if (arr1) {
+        for (int i = 0; i < 5; i++) {
+            printf("arr1[%d] = %d\n", i, arr1[i]);  // Expect all zeros
+        }
+        free(arr1);
+    } else {
+        printf("Memory allocation failed!\n");
+    }
+    printf("\n");
+
+    // Test case 2: Allocate zero memory
+    printf("Test 2 (0 size allocation):\n");
+    int *arr2 = (int *)ft_calloc(0, sizeof(int));
+    if (arr2 == NULL) {
+        printf("Expected: NULL\n");
+        printf("Result  : NULL\n");
+    } else {
+        printf("Result is not NULL (unexpected behavior)!\n");
+        free(arr2);
+    }
+    printf("\n");
+
+    // Test case 3: Allocate memory for 1000 characters
+    printf("Test 3 (1000 characters):\n");
+    char *arr3 = (char *)ft_calloc(1000, sizeof(char));
+    if (arr3) {
+        int all_zero = 1;
+        for (int i = 0; i < 1000; i++) {
+            if (arr3[i] != 0) {
+                all_zero = 0;
+                break;
+            }
+        }
+        if (all_zero) {
+            printf("Memory is correctly initialized to zero.\n");
+        } else {
+            printf("Memory is not initialized correctly!\n");
+        }
+        free(arr3);
+    } else {
+        printf("Memory allocation failed!\n");
+    }
+    printf("\n");
+
+    // Test case 4: Allocate memory for a large block
+    printf("Test 4 (large allocation):\n");
+    size_t large_size = 1000000;
+    int *arr4 = (int *)ft_calloc(large_size, sizeof(int));
+    if (arr4) {
+        printf("Large memory allocation successful.\n");
+        free(arr4);
+    } else {
+        printf("Large memory allocation failed!\n");
+    }
+    printf("\n");
+
+    // Test case 5: Allocate memory for a struct
+    struct test_struct {
+        int a;
+        double b;
+    };
+
+    printf("Test 5 (struct allocation):\n");
+    struct test_struct *arr5 = (struct test_struct *)ft_calloc(5, sizeof(struct test_struct));
+    if (arr5) {
+        for (int i = 0; i < 5; i++) {
+            printf("arr5[%d].a = %d, arr5[%d].b = %f\n", i, arr5[i].a, i, arr5[i].b);  // Expect all zeros
+        }
+        free(arr5);
+    } else {
+        printf("Memory allocation failed!\n");
+    }
+    printf("\n");
+
+    // Test case 6: Null comparison to calloc
+    printf("Test 6 (comparison with calloc):\n");
+    int *arr6 = (int *)ft_calloc(5, sizeof(int));
+    int *arr7 = (int *)calloc(5, sizeof(int));
+
+    if (arr6 && arr7) {
+        if (memcmp(arr6, arr7, 5 * sizeof(int)) == 0) {
+            printf("ft_calloc works similarly to calloc.\n");
+        } else {
+            printf("ft_calloc does not work like calloc!\n");
+        }
+        free(arr6);
+        free(arr7);
+    } else {
+        printf("Memory allocation failed!\n");
+    }
+    printf("\n");
+
+    printf("==============================================================\n");
+}
+// ft_strdup()
+void test_ft_strdup()
+{
+ printf("Testing ft_strdup...\n");
+
+    // Test 1: Duplicating a simple string
+    char *str1 = "Hello, World!";
+    char *dup1 = ft_strdup(str1);
+    printf("Test 1 (Simple string):\n");
+    printf("Original: \"%s\"\n", str1);
+    printf("Duplicate: \"%s\"\n", dup1);
+    printf("Result: %s\n", (strcmp(str1, dup1) == 0) ? "Passed" : "Failed");
+    free(dup1);
+    printf("\n");
+
+    // Test 2: Duplicating an empty string
+    char *str2 = "";
+    char *dup2 = ft_strdup(str2);
+    printf("Test 2 (Empty string):\n");
+    printf("Original: \"%s\"\n", str2);
+    printf("Duplicate: \"%s\"\n", dup2);
+    printf("Result: %s\n", (strcmp(str2, dup2) == 0) ? "Passed" : "Failed");
+    free(dup2);
+    printf("\n");
+
+    // Test 3: Duplicating a string with spaces
+    char *str3 = "   Hello   ";
+    char *dup3 = ft_strdup(str3);
+    printf("Test 3 (String with spaces):\n");
+    printf("Original: \"%s\"\n", str3);
+    printf("Duplicate: \"%s\"\n", dup3);
+    printf("Result: %s\n", (strcmp(str3, dup3) == 0) ? "Passed" : "Failed");
+    free(dup3);
+    printf("\n");
+
+    // Test 4: Duplicating a string with special characters
+    char *str4 = "C@d3! $tr1ng!";
+    char *dup4 = ft_strdup(str4);
+    printf("Test 4 (Special characters):\n");
+    printf("Original: \"%s\"\n", str4);
+    printf("Duplicate: \"%s\"\n", dup4);
+    printf("Result: %s\n", (strcmp(str4, dup4) == 0) ? "Passed" : "Failed");
+    free(dup4);
+    printf("\n");
+
+    // Test 5: Duplicating a long string
+    char *str5 = "This is a very long string to test ft_strdup. Let's see if it can handle larger strings properly!";
+    char *dup5 = ft_strdup(str5);
+    printf("Test 5 (Long string):\n");
+    printf("Original: \"%s\"\n", str5);
+    printf("Duplicate: \"%s\"\n", dup5);
+    printf("Result: %s\n", (strcmp(str5, dup5) == 0) ? "Passed" : "Failed");
+    free(dup5);
+    printf("\n");
+
+    // Test 6: Duplicating a large block of memory (performance check)
+    char large_str[10000];
+    memset(large_str, 'A', 9999);
+    large_str[9999] = '\0';
+    char *dup6 = ft_strdup(large_str);
+    printf("Test 6 (Large block of memory):\n");
+    printf("Result: %s\n", (strcmp(large_str, dup6) == 0) ? "Passed" : "Failed");
+    free(dup6);
+    printf("\n");
+
+    printf("==============================================================\n");
+
+}
 int main()
 {
+    // mandatory
     test_ft_isalpha();
     test_ft_isdigit();
     test_ft_isalnum();
@@ -912,5 +1083,7 @@ int main()
     test_ft_memcmp();
     test_ft_memchr();
     test_ft_atoi();
+    test_ft_calloc();
+    test_ft_strdup();
     return (0);
 }
