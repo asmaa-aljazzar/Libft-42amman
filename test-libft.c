@@ -9,7 +9,7 @@
  * printf("Hexadecimal: %x\n", value);    // Prints: f
  * printf("Padded Hex:  %02x\n", value);  // Prints: 0f
  */
-void print_array(unsigned char arr[], int size)
+void    print_array(unsigned char arr[], int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -18,9 +18,9 @@ void print_array(unsigned char arr[], int size)
     printf("\n");
 }
 
-
+// Mandatory LIBC
 // ft_isalpha()
-void test_ft_isalpha()
+void    test_ft_isalpha()
 {
     printf("Testing ft_isalpha...\n");
 
@@ -40,7 +40,7 @@ void test_ft_isalpha()
 }
 
 // ft_isdigit()
-void test_ft_isdigit()
+void    test_ft_isdigit()
 {
     printf("Testing ft_isdigit...\n");
 
@@ -60,7 +60,7 @@ void test_ft_isdigit()
 }
 
 // ft_isalnum()
-void test_ft_isalnum()
+void    test_ft_isalnum()
 {
     printf("Testing ft_isallnum...\n");
 
@@ -80,7 +80,7 @@ void test_ft_isalnum()
 }
 
 // ft_isascii()
-void test_ft_isascii()
+void    test_ft_isascii()
 {
     printf("Testing ft_isascii...\n");
 
@@ -129,7 +129,7 @@ void test_ft_isascii()
 }
 
 // ft_isprint()
-void test_ft_isprint()
+void    test_ft_isprint()
 {
     printf("Testing ft_isprint...\n");
 
@@ -162,7 +162,7 @@ void test_ft_isprint()
 }
 
 // ft_toupper()
-void test_ft_toupper()
+void    test_ft_toupper()
 {
     printf("Testing ft_toupper...\n");
 
@@ -194,7 +194,7 @@ void test_ft_toupper()
 }
 
 // ft_tolower()
-void test_ft_tolower()
+void    test_ft_tolower()
 {
     printf("Testing ft_tolower...\n");
     char a = 'a', b = 'b', c = 'c', z = 'z';
@@ -224,7 +224,7 @@ void test_ft_tolower()
     printf("==============================================================\n");
 }
 
-void test_ft_strlen()
+void    test_ft_strlen()
 {
     printf("Testing ft_strlen...\n");
 
@@ -241,7 +241,7 @@ void test_ft_strlen()
 }
 
 // ft_memset()
-void test_ft_memset()
+void    test_ft_memset()
 {
     printf("Testing ft_memset...\n");
     unsigned char test1[10] = {0};
@@ -285,7 +285,7 @@ void test_ft_memset()
 }
 
 // ft_bzero()
-void test_ft_bzero()
+void    test_ft_bzero()
 {
     printf("Testing ft_bzero...\n");
     unsigned char test1[10] = {0};
@@ -322,7 +322,7 @@ void test_ft_bzero()
 }
 
 // ft_memcpy()
-void test_ft_memcpy()
+void    test_ft_memcpy()
 {
     printf("Testing ft_memcpy...\n");
      // Test Case 1: Normal Copy
@@ -383,7 +383,7 @@ void test_ft_memcpy()
 }
 
 // ft_memmove()
-void test_ft_memmove()
+void    test_ft_memmove()
 {
 
 // Test Case 1: Non-overlapping regions
@@ -428,7 +428,7 @@ printf("==============================================================\n");
 }
 
 // ft_strlcpy()
-void test_ft_strlcpy()
+void    test_ft_strlcpy()
 {
 printf("Testing ft_strlcpy...\n");
 
@@ -486,7 +486,7 @@ printf("Testing ft_strlcpy...\n");
 }
 
 // ft_strlcat()
-void test_ft_strlcat()
+void    test_ft_strlcat()
 {
     printf("Testing ft_strlcat...\n");
     char dst[20];
@@ -535,7 +535,7 @@ void test_ft_strlcat()
 }
 
 // ft_strchr
-void test_ft_strchr()
+void    test_ft_strchr()
 {
     printf("Testing ft_strchr...\n");
     const char *test1 = "Hello, World!";
@@ -575,7 +575,7 @@ void test_ft_strchr()
 }
 
 // ft_strrchr
-void test_ft_strrchr() 
+void    test_ft_strrchr() 
 {
     printf("Testing ft_strrchr...\n");
     const char *test1 = "Hello, World!";
@@ -622,7 +622,7 @@ void test_ft_strrchr()
 }
 
 // ft_strncmp
-void test_ft_strncmp()
+void    test_ft_strncmp()
 {
     printf("Testing ft_strncmp...\n");
 
@@ -679,7 +679,7 @@ void test_ft_strncmp()
 }
 
 // ft_memcmp
-void test_ft_memcmp()
+void    test_ft_memcmp()
 {
     printf("Testing ft_memcmp...\n");
 
@@ -750,7 +750,7 @@ void test_ft_memcmp()
 }
 
 // ft_memchr
-void test_ft_memchr()
+void    test_ft_memchr()
 {
     printf("Testing ft_memchr...\n");
 
@@ -811,7 +811,7 @@ void test_ft_memchr()
 }
 
 // ft_atoi
-void test_ft_atoi()
+void    test_ft_atoi()
 {
     printf("Testing ft_atoi...\n");
 
@@ -891,7 +891,7 @@ void test_ft_atoi()
 
 }
 // ft_calloc()
-void test_ft_calloc()
+void    test_ft_calloc()
 {
  printf("Testing ft_calloc...\n");
 
@@ -993,7 +993,7 @@ void test_ft_calloc()
     printf("==============================================================\n");
 }
 // ft_strdup()
-void test_ft_strdup()
+void    test_ft_strdup()
 {
  printf("Testing ft_strdup...\n");
 
@@ -1060,7 +1060,177 @@ void test_ft_strdup()
     printf("==============================================================\n");
 
 }
-int main()
+
+// Additional 
+// ft_substr()
+void    test_ft_substr()
+{
+    printf("Testing ft_substr...\n");
+
+    // Test 1: Substring with valid start and length
+    char *str1 = "Hello, World!";
+    char *sub1 = ft_substr(str1, 7, 5); // Expected output: "World"
+    printf("Test 1 (Valid start and length):\n");
+    printf("Original: \"%s\"\n", str1);
+    printf("Substring: \"%s\"\n", sub1);
+    printf("Result: %s\n", (strcmp(sub1, "World") == 0) ? "Passed" : "Failed");
+    free(sub1);
+    printf("\n");
+
+    // Test 2: Substring with start at 0
+    char *str2 = "Hello, World!";
+    char *sub2 = ft_substr(str2, 0, 5); // Expected output: "Hello"
+    printf("Test 2 (Start at 0):\n");
+    printf("Original: \"%s\"\n", str2);
+    printf("Substring: \"%s\"\n", sub2);
+    printf("Result: %s\n", (strcmp(sub2, "Hello") == 0) ? "Passed" : "Failed");
+    free(sub2);
+    printf("\n");
+
+    // Test 3: Substring with length exceeding available characters
+    char *str3 = "Hello, World!";
+    char *sub3 = ft_substr(str3, 7, 50); // Expected output: "World!"
+    printf("Test 3 (Length exceeding available characters):\n");
+    printf("Original: \"%s\"\n", str3);
+    printf("Substring: \"%s\"\n", sub3);
+    printf("Result: %s\n", (strcmp(sub3, "World!") == 0) ? "Passed" : "Failed");
+    free(sub3);
+    printf("\n");
+
+    // Test 4: Substring when start is out of bounds
+    char *str4 = "Hello, World!";
+    char *sub4 = ft_substr(str4, 50, 5); // Expected output: ""
+    printf("Test 4 (Start out of bounds):\n");
+    printf("Original: \"%s\"\n", str4);
+    printf("Substring: \"%s\"\n", sub4);
+    printf("Result: %s\n", (strcmp(sub4, "") == 0) ? "Passed" : "Failed");
+    free(sub4);
+    printf("\n");
+
+    // Test 5: Substring of an empty string
+    char *str5 = "";
+    char *sub5 = ft_substr(str5, 0, 5); // Expected output: ""
+    printf("Test 5 (Empty string):\n");
+    printf("Original: \"%s\"\n", str5);
+    printf("Substring: \"%s\"\n", sub5);
+    printf("Result: %s\n", (strcmp(sub5, "") == 0) ? "Passed" : "Failed");
+    free(sub5);
+    printf("\n");
+
+    // Test 6: Substring of a string with special characters
+    char *str6 = "C@d3! $tr1ng!";
+    char *sub6 = ft_substr(str6, 2, 5); // Expected output: "d3! $"
+    printf("Test 6 (Special characters):\n");
+    printf("Original: \"%s\"\n", str6);
+    printf("Substring: \"%s\"\n", sub6);
+    printf("Result: %s\n", (strcmp(sub6, "d3! $") == 0) ? "Passed" : "Failed");
+    free(sub6);
+    printf("\n");
+
+    // Test 7: Substring with a start at the last character
+    char *str7 = "Hello, World!";
+    char *sub7 = ft_substr(str7, 11, 5); // Start at index 11 to get "d!"
+    printf("Test 7 (Start at the second-to-last character):\n");
+    printf("Original: \"%s\"\n", str7);
+    printf("Substring: \"%s\"\n", sub7);
+    printf("Result: %s\n", (strcmp(sub7, "d!") == 0) ? "Passed" : "Failed");
+    free(sub7);
+    printf("\n");
+
+
+    printf("==============================================================\n");
+}
+
+// ft_strjoin()
+void    test_ft_strjoin()
+{
+    printf("Testing ft_strjoin...\n");
+
+    // Test 1: Join two non-null strings
+    char *str1 = "Hello, ";
+    char *str2 = "World!";
+    char *result1 = ft_strjoin(str1, str2); // Expected output: "Hello, World!"
+    printf("Test 1 (Two non-null strings):\n");
+    printf("String 1: \"%s\"\n", str1);
+    printf("String 2: \"%s\"\n", str2);
+    printf("Result: \"%s\"\n", result1);
+    printf("Result: %s\n", (strcmp(result1, "Hello, World!") == 0) ? "Passed" : "Failed");
+    free(result1);
+    printf("\n");
+
+    // Test 2: Join one non-null string with NULL
+    char *str3 = "Only non-null";
+    char *result2 = ft_strjoin(str3, NULL); // Expected output: "Only non-null"
+    printf("Test 2 (Non-null string and NULL):\n");
+    printf("String: \"%s\"\n", str3);
+    printf("Result: \"%s\"\n", result2);
+    printf("Result: %s\n", (strcmp(result2, "Only non-null") == 0) ? "Passed" : "Failed");
+    free(result2);
+    printf("\n");
+
+    // Test 3: Join NULL with one non-null string
+    char *str4 = NULL;
+    char *str5 = "Only non-null";
+    char *result3 = ft_strjoin(str4, str5); // Expected output: "Only non-null"
+    printf("Test 3 (NULL and non-null string):\n");
+    printf("String: \"%s\"\n", str5);
+    printf("Result: \"%s\"\n", result3);
+    printf("Result: %s\n", (strcmp(result3, "Only non-null") == 0) ? "Passed" : "Failed");
+    free(result3);
+    printf("\n");
+
+    // Test 4: Join two empty strings
+    char *str6 = "";
+    char *str7 = "";
+    char *result4 = ft_strjoin(str6, str7); // Expected output: ""
+    printf("Test 4 (Two empty strings):\n");
+    printf("String 1: \"%s\"\n", str6);
+    printf("String 2: \"%s\"\n", str7);
+    printf("Result: \"%s\"\n", result4);
+    printf("Result: %s\n", (strcmp(result4, "") == 0) ? "Passed" : "Failed");
+    free(result4);
+    printf("\n");
+
+    // Test 5: Join a non-empty string with an empty string
+    char *str8 = "Non-empty";
+    char *str9 = "";
+    char *result5 = ft_strjoin(str8, str9); // Expected output: "Non-empty"
+    printf("Test 5 (Non-empty string and empty string):\n");
+    printf("String: \"%s\"\n", str8);
+    printf("Result: \"%s\"\n", result5);
+    printf("Result: %s\n", (strcmp(result5, "Non-empty") == 0) ? "Passed" : "Failed");
+    free(result5);
+    printf("\n");
+
+    // Test 6: Join two strings with special characters
+    char *str10 = "Sp3cial";
+    char *str11 = "#Chars!";
+    char *result6 = ft_strjoin(str10, str11); // Expected output: "Sp3cial#Chars!"
+    printf("Test 6 (Special characters):\n");
+    printf("String 1: \"%s\"\n", str10);
+    printf("String 2: \"%s\"\n", str11);
+    printf("Result: \"%s\"\n", result6);
+    printf("Result: %s\n", (strcmp(result6, "Sp3cial#Chars!") == 0) ? "Passed" : "Failed");
+    free(result6);
+    printf("\n");
+
+    // Test 7: Join two large strings
+    char *str12 = "A";
+    char *str13 = "B";
+    char *result7 = ft_strjoin(str12, str13); // Expected output: "AB"
+    printf("Test 7 (Large strings):\n");
+    printf("String 1: \"%s\"\n", str12);
+    printf("String 2: \"%s\"\n", str13);
+    printf("Result: \"%s\"\n", result7);
+    printf("Result: %s\n", (strcmp(result7, "AB") == 0) ? "Passed" : "Failed");
+    free(result7);
+    printf("\n");
+
+    printf("==============================================================\n");
+}
+
+
+int    main()
 {
     // mandatory
     test_ft_isalpha();
@@ -1085,5 +1255,7 @@ int main()
     test_ft_atoi();
     test_ft_calloc();
     test_ft_strdup();
+    test_ft_substr();
+    test_ft_strjoin();
     return (0);
 }
