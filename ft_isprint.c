@@ -1,3 +1,4 @@
+#include "libft.h"
 /*
 * The isprint() function returns a non-zero value 
 * if the character passed as an int parameter is a printing character.

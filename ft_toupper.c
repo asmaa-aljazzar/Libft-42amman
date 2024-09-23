@@ -1,3 +1,4 @@
+#include "libft.h"
 /*
 * The function converts a lower-case letter 
 * to the corresponding upper-case letter.

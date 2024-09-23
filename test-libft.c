@@ -1229,6 +1229,70 @@ void    test_ft_strjoin()
     printf("==============================================================\n");
 }
 
+void    test_ft_strtrim()
+{
+    printf("Testing ft_strtrim...\n");
+
+    char *result;
+    const char *s1;
+    const char *set;
+
+    /* Test case 1: Trim from both ends */
+    s1 = "   Hello World   ";
+    set = " ";
+    printf("Test 1 (Trim spaces from both ends):\n");
+    result = ft_strtrim(s1, set);
+    printf("Result: %s\n", result);
+    printf("Expected: %s, Result: %s\n\n", "Hello World", result);
+    free(result);  // Free memory if allocated dynamically
+
+    /* Test case 2: Trim characters not in the set */
+    s1 = "---Hello World---";
+    set = "-";
+    printf("Test 2 (Trim '-' from both ends):\n");
+    result = ft_strtrim(s1, set);
+    printf("Result: %s\n", result);
+    printf("Expected: %s, Result: %s\n\n", "Hello World", result);
+    free(result);
+
+    /* Test case 3: String with no trim characters */
+    s1 = "Hello World";
+    set = " ";
+    printf("Test 3 (No characters to trim):\n");
+    result = ft_strtrim(s1, set);
+    printf("Result: %s\n", result);
+    printf("Expected: %s, Result: %s\n\n", "Hello World", result);
+    free(result);
+
+    /* Test case 4: Empty string */
+    s1 = "";
+    set = " ";
+    printf("Test 4 (Empty s1):\n");
+    result = ft_strtrim(s1, set);
+    printf("Result: %s\n", result);
+    printf("Expected: %s, Result: %s\n\n", "", result);
+    free(result);
+
+    /* Test case 5: Empty set */
+    s1 = "  Hello World  ";
+    set = "";
+    printf("Test 5 (Empty set):\n");
+    result = ft_strtrim(s1, set);
+    printf("Result: %s\n", result);
+    printf("Expected: %s, Result: %s\n\n", "  Hello World  ", result);
+    free(result);
+
+    /* Test case 6: Trim multiple different characters */
+    s1 = "xyzHello Worldxyz";
+    set = "xyz";
+    printf("Test 6 (Trim 'xyz' from both ends):\n");
+    result = ft_strtrim(s1, set);
+    printf("Result: %s\n", result);
+    printf("Expected: %s, Result: %s\n\n", "Hello World", result);
+    free(result);
+
+    printf("==============================================================\n");
+}
 
 int    main()
 {
@@ -1257,5 +1321,6 @@ int    main()
     test_ft_strdup();
     test_ft_substr();
     test_ft_strjoin();
+    test_ft_strtrim();
     return (0);
 }

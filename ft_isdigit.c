@@ -1,3 +1,4 @@
+#include "libft.h"
 /* 
 * This Function Check if the character is number or not
 * If the character is a number it will return a non-zero number
