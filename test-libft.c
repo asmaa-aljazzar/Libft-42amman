@@ -1500,6 +1500,49 @@ void test_ft_putendl_fd()
     printf("\n==============================================================\n");
 }
 
+// ft_putnbr_fd()
+// TODO: study recarsion and how it back to previous call like stack...
+void test_ft_putnbr_fd()
+{
+     printf("Testing ft_putnbr_fd...\n");
+
+    // Test case 1: Writing a positive number to stdout
+    printf("Test case 1: Writing 12345 to stdout\n");
+    ft_putnbr_fd(12345, STDOUT_FILENO);  // Should print "12345" to the console
+
+    // Test case 2: Writing a negative number to stdout
+    printf("\nTest case 2: Writing -67890 to stdout\n");
+    ft_putnbr_fd(-67890, STDOUT_FILENO);  // Should print "-67890" to the console
+
+    // Test case 3: Writing the minimum integer value
+    printf("\nTest case 3: Writing INT_MIN (-2147483648) to stdout\n");
+    ft_putnbr_fd(-2147483648, STDOUT_FILENO);  // Should print "-2147483648" to the console
+
+    // Test case 4: Writing zero to stdout
+    printf("\nTest case 4: Writing 0 to stdout\n");
+    ft_putnbr_fd(0, STDOUT_FILENO);  // Should print "0" to the console
+
+    // Test case 5: Writing to a file
+    printf("\nTest case 5: Writing 42 to 'test_output.txt'\n");
+    int fd = open("test_output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);  // Open file
+    if (fd == -1)
+    {
+        printf("Error opening file for Test case 5\n");
+    }
+    else
+    {
+        ft_putnbr_fd(42, fd);  // Should write "42" to test_output.txt
+        close(fd);
+        printf("Check 'test_output.txt' for the result\n");
+    }
+
+    // Test case 6: Writing to an invalid file descriptor
+    printf("\nTest case 6: Writing to an invalid file descriptor\n");
+    ft_putnbr_fd(123, -1);  // Invalid file descriptor
+    printf("No crash means the test passed.\n");
+
+    printf("\n==============================================================\n");
+}
 int    main()
 {
     // mandatory
@@ -1532,5 +1575,6 @@ int    main()
     test_ft_putchar_fd();
     test_ft_putstr_fd();
     test_ft_putendl_fd();
+    test_ft_putnbr_fd();
     return (0);
 }
