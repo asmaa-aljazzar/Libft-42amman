@@ -2,6 +2,8 @@
 #include "libft.h"
 #include <wchar.h>
 #include <string.h>
+#include <fcntl.h>  // Include this for file opening flags
+
 
 // wchar meaning wide-char
 // To print any array in hexadecimal format
@@ -16,6 +18,14 @@ void    print_array(unsigned char arr[], int size)
         printf("%02X ", arr[i]); // Print each byte in hexadecimal format
     }
     printf("\n");
+}
+
+// ft_split
+void free_split_result(char **result) {
+    for (int i = 0; result[i] != NULL; i++) {
+        free(result[i]);
+    }
+    free(result);
 }
 
 // Mandatory LIBC
@@ -1229,6 +1239,7 @@ void    test_ft_strjoin()
     printf("==============================================================\n");
 }
 
+// ft_strtrim()
 void    test_ft_strtrim()
 {
     printf("Testing ft_strtrim...\n");
@@ -1294,6 +1305,201 @@ void    test_ft_strtrim()
     printf("==============================================================\n");
 }
 
+// ft_split()
+void test_ft_split()
+{
+   printf("Testing ft_split...\n");
+
+// Test 1: Basic split with a single delimiter
+char *str1 = "Hello,World!";
+char **result1 = ft_split(str1, ','); // Expected output: ["Hello", "World!"]
+printf("Test 1 (Basic split):\n");
+for (int i = 0; result1[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result1[i]);
+}
+free_split_result(result1);
+printf("\n");
+
+// Test 2: Split with multiple delimiters
+char *str2 = "a,b,c,d";
+char **result2 = ft_split(str2, ','); // Expected output: ["a", "b", "c", "d"]
+printf("Test 2 (Multiple delimiters):\n");
+for (int i = 0; result2[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result2[i]);
+}
+free_split_result(result2);
+printf("\n");
+
+// Test 3: Split with consecutive delimiters
+char *str3 = "Hello,,World!";
+char **result3 = ft_split(str3, ','); // Expected output: ["Hello", "", "World!"]
+printf("Test 3 (Consecutive delimiters):\n");
+for (int i = 0; result3[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result3[i]);
+}
+free_split_result(result3);
+printf("\n");
+
+// Test 4: Split with a delimiter at the start
+char *str4 = ",Hello,World!";
+char **result4 = ft_split(str4, ','); // Expected output: ["", "Hello", "World!"]
+printf("Test 4 (Delimiter at start):\n");
+for (int i = 0; result4[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result4[i]);
+}
+free_split_result(result4);
+printf("\n");
+
+// Test 5: Split with a delimiter at the end
+char *str5 = "Hello,World!,";
+char **result5 = ft_split(str5, ','); // Expected output: ["Hello", "World!", ""]
+printf("Test 5 (Delimiter at end):\n");
+for (int i = 0; result5[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result5[i]);
+}
+free_split_result(result5);
+printf("\n");
+
+// Test 6: Split empty string
+char *str6 = "";
+char **result6 = ft_split(str6, ','); // Expected output: [""]
+printf("Test 6 (Empty string):\n");
+for (int i = 0; result6[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result6[i]);
+}
+free_split_result(result6);
+printf("\n");
+
+// Test 7: Split a string with spaces
+char *str7 = "   Hello World!   ";
+char **result7 = ft_split(str7, ' '); // Expected output: ["", "", "", "Hello", "World!", "", "", "", ""]
+printf("Test 7 (String with spaces):\n");
+for (int i = 0; result7[i] != NULL; i++) {
+    printf("Result[%d]: \"%s\"\n", i, result7[i]);
+}
+free_split_result(result7);
+printf("\n");
+
+printf("==============================================================\n");
+}
+
+// ft_putchar_fd()
+// TODO study fd and meanings...
+void test_ft_putchar_fd()
+{
+printf("Testing ft_putchar_fd...\n");
+
+    // Test case 1: Write to standard output (stdout)
+    printf("Test case 1: Writing 'A' to stdout\n");
+    ft_putchar_fd('A', STDOUT_FILENO);  // Should print 'A' to the terminal
+    printf("\n");
+
+    // Test case 2: Write to standard error (stderr)
+    printf("Test case 2: Writing 'B' to stderr\n");
+    ft_putchar_fd('B', STDERR_FILENO);  // Should print 'B' to the terminal's stderr
+    printf("\n");
+
+    // Test case 3: Write to a file
+    int fd = open("test_output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1)
+    {
+        perror("Failed to open file");
+        return;
+    }
+    printf("Test case 3: Writing 'C' to a file 'test_output.txt'\n");
+    ft_putchar_fd('C', fd);  // Should write 'C' to the file
+    close(fd);
+    printf("\n");
+
+    // Test case 4: Invalid file descriptor
+    printf("Test case 4: Writing 'D' to an invalid file descriptor\n");
+    ft_putchar_fd('D', -1);  // Should not crash, but likely produce an error
+    printf("\n");
+    
+    printf("==============================================================\n");
+}
+
+// ft_putstr_fd()
+void test_ft_putstr_fd()
+{
+     printf("Testing ft_putstr_fd...\n");
+
+    // Test case 1: Writing to stdout
+    printf("Test case 1: Writing 'Hello, World!' to stdout\n");
+    ft_putstr_fd("Hello, World!", STDOUT_FILENO);  // Should print to the console
+    printf("\n");
+
+    // Test case 2: Writing to stderr
+    printf("Test case 2: Writing 'Error!' to stderr\n");
+    ft_putstr_fd("Error!", STDERR_FILENO);  // Should print to stderr
+    printf("\n");
+
+    // Test case 3: Writing to a file
+    printf("Test case 3: Writing 'File test' to 'test_output2.txt'\n");
+    int fd = open("test_output2.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1)
+    {
+        printf("Error opening file for Test case 3\n");
+    }
+    else
+    {
+        ft_putstr_fd("File test", fd);  // Should write to test_output.txt
+        close(fd);
+        printf("Check 'test_output2.txt' for the result\n");
+    }
+
+    // Test case 4: Null string
+    printf("Test case 4: Passing NULL string (No output expected)\n");
+    ft_putstr_fd(NULL, STDOUT_FILENO);  // Should not print anything or crash
+    printf("If no output or errors, the test passed.\n");
+
+    // Test case 5: Writing to an invalid file descriptor
+    printf("Test case 5: Writing to an invalid file descriptor\n");
+    ft_putstr_fd("This should not print", -1);  // Invalid file descriptor
+    printf("No crash means the test passed.\n");
+
+    printf("\n==============================================================\n");
+}
+
+// ft_putendl_fd()
+void test_ft_putendl_fd()
+{
+    printf("Testing ft_putendl_fd...\n");
+
+    // Test case 1: Writing to stdout
+    printf("Test case 1: Writing 'Hello, World!' to stdout\n");
+    ft_putendl_fd("Hello, World!", STDOUT_FILENO);  // Should print to the console with a newline
+
+    // Test case 2: Writing to stderr
+    printf("Test case 2: Writing 'Error!' to stderr\n");
+    ft_putendl_fd("Error!", STDERR_FILENO);  // Should print to stderr with a newline
+
+    // Test case 3: Writing to a file
+    printf("Test case 3: Writing 'File test' to 'test_output.txt'\n");
+    int fd = open("test_output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    if (fd == -1)
+    {
+        printf("Error opening file for Test case 3\n");
+    }
+    else
+    {
+        ft_putendl_fd("File test", fd);  // Should write to test_output.txt with a newline
+        close(fd);
+        printf("Check 'test_output.txt' for the result\n");
+    }
+
+    // Test case 4: Null string
+    printf("Test case 4: Passing NULL string (nothing should be printed)\n");
+    ft_putendl_fd(NULL, STDOUT_FILENO);  // Should not print anything
+
+    // Test case 5: Writing to an invalid file descriptor
+    printf("Test case 5: Writing to an invalid file descriptor\n");
+    ft_putendl_fd("This should not print", -1);  // Invalid file descriptor
+    printf("No crash means the test passed.\n");
+
+    printf("\n==============================================================\n");
+}
+
 int    main()
 {
     // mandatory
@@ -1322,5 +1528,9 @@ int    main()
     test_ft_substr();
     test_ft_strjoin();
     test_ft_strtrim();
+    test_ft_split();
+    test_ft_putchar_fd();
+    test_ft_putstr_fd();
+    test_ft_putendl_fd();
     return (0);
 }
