@@ -1,4 +1,3 @@
-#set anything about test as comment
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a

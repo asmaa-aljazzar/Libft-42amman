@@ -1,8 +1,30 @@
 #include "libft.h"
 
+static int	safe_malloc(char **arr, int position, size_t size);
+static int	fill(char **arr, char const *str, char delimeter);
+static size_t	count_words(char const *str, char delimeter);
+
+char	**ft_split(char const *str, char c)
+{
+	size_t	words;
+	char	**arr;
+
+	if (NULL == str)
+		return (NULL);
+	words = 0;
+	words = count_words(str, c);
+	arr = malloc((words + 1) * sizeof(char *));
+	if (NULL == arr)
+		return (NULL);
+	arr[words] = NULL;
+	if (fill(arr, str, c))
+		return (NULL);
+	return (arr);
+}
+
 static int	safe_malloc(char **arr, int position, size_t size)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	arr[position] = malloc(size);
@@ -20,7 +42,7 @@ static int	safe_malloc(char **arr, int position, size_t size)
 static int	fill(char **arr, char const *str, char delimeter)
 {
 	size_t	word_len;
-	int		i;
+	int	i;
 
 	i = 0;
 	while (*str)
@@ -35,9 +57,9 @@ static int	fill(char **arr, char const *str, char delimeter)
 		}
 		if (word_len)
 		{
-			 if (safe_malloc(arr, i, word_len + 1))
-				   return (1);
-		  ft_strlcpy(arr[i], str - word_len, word_len + 1);
+			if (safe_malloc(arr, i, word_len + 1))
+				return (1);
+			ft_strlcpy(arr[i], str - word_len, word_len + 1);
 		}
 		++i;
 	}
@@ -46,42 +68,24 @@ static int	fill(char **arr, char const *str, char delimeter)
 
 static size_t	count_words(char const *str, char delimeter)
 {
-	size_t	tokens;
-	int		inside_token;
+	size_t	word;
+	int	inside_word;
 
-	tokens = 0;
+	word = 0;
 	while (*str)
 	{
-		inside_token = 0;
+		inside_word = 0;
 		while (*str == delimeter && *str)
 			++str;
 		while (*str != delimeter && *str)
 		{
-			if (!inside_token)
+			if (!inside_word)
 			{
-				++tokens;
-				inside_token = 42;
+				++word;
+				inside_word = 42;
 			}
 			++str;
 		}
 	}
-	return (tokens);
-}
-
-char	**ft_split(char const *str, char c)
-{
-	size_t	tokens;
-	char	**arr;
-
-	if (NULL == str)
-		return (NULL);
-	tokens = 0;
-	tokens = count_words(str, c);
-	arr = malloc((tokens + 1) * sizeof(char *));
-	if (NULL == arr)
-		return (NULL);
-	arr[tokens] = NULL;
-	if (fill(arr, str, c))
-		return (NULL);
-	return (arr);
+	return (word);
 }

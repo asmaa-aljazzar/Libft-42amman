@@ -1,9 +1,13 @@
 #include "libft.h"
-void ft_putstr_fd(char *s, int fd)
+
+// Put a string in a file description
+void	ft_putstr_fd(char *s, int fd)
 {
-    if (s)
-    {
-    unsigned int len = ft_strlen(s);
-    write(fd, s, len);
-    }
+	unsigned int	len;
+
+	if (s)
+	{
+		len = ft_strlen(s);
+		write (fd, s, len);
+	}
 }

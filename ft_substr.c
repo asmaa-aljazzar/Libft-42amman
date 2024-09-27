@@ -7,30 +7,29 @@ maximum size ’len’.
 */
 //* using strdup to ensure that we can free it later (strdup is using malloc)
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    if (!s)
-        return (NULL);
-    size_t slen;
+	unsigned int	slen;
+	unsigned int	i;
+	char	*sub;
 
-    slen = ft_strlen(s);
-    if (start >= slen)
-        return (strdup(""));
-    if (len > slen - start )
-        len = slen - start;
-
-    char *sub = malloc(len + 1);
-    if (!sub)
-        return (NULL);
-    
-    size_t i;
-    i = 0;
-    while (i < len && s[start])
-    {
-        sub[i] = s[start];
-        i++;
-        start++;
-    }
-    sub[i] = '\0';
-    return (sub);
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (strdup(""));
+	if (len > slen - start)
+		len = slen - start;
+	sub = malloc(len + 1);
+	if (!sub)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start])
+	{
+		sub[i] = s[start];
+		i++;
+		start++;
+	}
+	sub[i] = '\0';
+	return (sub);
 }
