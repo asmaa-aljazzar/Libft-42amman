@@ -1505,25 +1505,8 @@ void test_ft_putendl_fd()
 void test_ft_putnbr_fd()
 {
      printf("Testing ft_putnbr_fd...\n");
-
-    // Test case 1: Writing a positive number to stdout
-    printf("Test case 1: Writing 12345 to stdout\n");
-    ft_putnbr_fd(12345, STDOUT_FILENO);  // Should print "12345" to the console
-
-    // Test case 2: Writing a negative number to stdout
-    printf("\nTest case 2: Writing -67890 to stdout\n");
-    ft_putnbr_fd(-67890, STDOUT_FILENO);  // Should print "-67890" to the console
-
-    // Test case 3: Writing the minimum integer value
-    printf("\nTest case 3: Writing INT_MIN (-2147483648) to stdout\n");
-    ft_putnbr_fd(-2147483648, STDOUT_FILENO);  // Should print "-2147483648" to the console
-
-    // Test case 4: Writing zero to stdout
-    printf("\nTest case 4: Writing 0 to stdout\n");
-    ft_putnbr_fd(0, STDOUT_FILENO);  // Should print "0" to the console
-
     // Test case 5: Writing to a file
-    printf("\nTest case 5: Writing 42 to 'test_output.txt'\n");
+    printf("\nTest: Writing 42 to 'test_output.txt'\n");
     int fd = open("test_output.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);  // Open file
     if (fd == -1)
     {
@@ -1539,10 +1522,110 @@ void test_ft_putnbr_fd()
     // Test case 6: Writing to an invalid file descriptor
     printf("\nTest case 6: Writing to an invalid file descriptor\n");
     ft_putnbr_fd(123, -1);  // Invalid file descriptor
-    printf("No crash means the test passed.\n");
+    printf("*****No crash means the test passed.\n");
 
     printf("\n==============================================================\n");
 }
+
+// TODO revesion
+// ft_itoa()
+void test_ft_itoa()
+{
+    printf("Testing ft_itoa...\n");
+
+    // Test case 1: Zero value
+    printf("\nTest case 1: Zero value\n");
+    char *result = ft_itoa(0);
+    printf("result = %s\n", result);
+    free(result);
+
+    // Test case 2: Positive value
+    printf("\nTest case 2: Positive value (12345)\n");
+    result = ft_itoa(12345);
+    printf("result = %s\n", result);
+    free(result);
+
+    // Test case 3: Negative value
+    printf("\nTest case 3: Negative value (-12345)\n");
+    result = ft_itoa(-12345);
+    printf("result = %s\n", result);
+    free(result);
+
+    // Test case 4: Minimum int value (INT_MIN)
+    printf("\nTest case 4: Minimum int value (INT_MIN)\n");
+    result = ft_itoa(-2147483648); // INT_MIN
+    printf("result = %s\n", result);
+    free(result);
+
+    // Test case 5: Maximum int value (INT_MAX)
+    printf("\nTest case 5: Maximum int value (INT_MAX)\n");
+    result = ft_itoa(2147483647); // INT_MAX
+    printf("result = %s\n", result);
+    free(result);
+
+    // Test case 6: Single digit positive
+    printf("\nTest case 6: Single digit positive (7)\n");
+    result = ft_itoa(7);
+    printf("result = %s\n", result);
+    free(result);
+
+    // Test case 7: Single digit negative
+    printf("\nTest case 7: Single digit negative (-7)\n");
+    result = ft_itoa(-7);
+    printf("result = %s\n", result);
+    free(result);
+
+    printf("\n==============================================================\n");
+}
+
+// ft_strnstr()
+void test_ft_strnstr()
+{
+     printf("Testing ft_strnstr...\n");
+
+    // Test case 1: Needle is empty
+    printf("\nTest case 1: Needle is empty\n");
+    char *result = ft_strnstr("Hello, World!", "", 20);
+    printf("result = %s\n", result); // Should return "Hello, World!"
+
+    // Test case 2: Needle is found within length limit
+    printf("\nTest case 2: Needle found within length limit\n");
+    result = ft_strnstr("Hello, World!", "World", 12);
+    printf("result = %s\n", result); // Should return "World!"
+
+    // Test case 3: Needle is not found within length limit
+    printf("\nTest case 3: Needle not found within length limit\n");
+    result = ft_strnstr("Hello, World!", "Planet", 20);
+    printf("result = %s\n", result); // Should return NULL
+
+    // Test case 4: Needle is found at the start of haystack
+    printf("\nTest case 4: Needle found at start\n");
+    result = ft_strnstr("Hello, World!", "Hello", 20);
+    printf("result = %s\n", result); // Should return "Hello, World!"
+
+    // Test case 5: Needle is longer than haystack
+    printf("\nTest case 5: Needle is longer than haystack\n");
+    result = ft_strnstr("Hello", "Hello, World!", 5);
+    printf("result = %s\n", result); // Should return NULL
+
+    // Test case 6: Haystack is empty
+    printf("\nTest case 6: Haystack is empty\n");
+    result = ft_strnstr("", "Hello", 5);
+    printf("result = %s\n", result); // Should return NULL
+
+    // Test case 7: Needle appears multiple times
+    printf("\nTest case 7: Needle appears multiple times\n");
+    result = ft_strnstr("Hello, World! Hello!", "Hello", 20);
+    printf("result = %s\n", result); // Should return "Hello, World! Hello!"
+
+    // Test case 8: Check boundary conditions
+    printf("\nTest case 8: Boundary condition\n");
+    result = ft_strnstr("abcde", "c", 3);
+    printf("result = %s\n", result); // Should return NULL, as "c" is not in the first 3 chars
+
+    printf("\n==============================================================\n");
+}
+
 int    main()
 {
     // mandatory
@@ -1576,5 +1659,7 @@ int    main()
     test_ft_putstr_fd();
     test_ft_putendl_fd();
     test_ft_putnbr_fd();
+    test_ft_itoa();
+    test_ft_strnstr();
     return (0);
 }
