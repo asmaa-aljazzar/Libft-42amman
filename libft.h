@@ -38,5 +38,6 @@ char *ft_strtrim(char const *s1, char const *set);
 char **ft_split(char const *str, char delimiter);
 char *ft_itoa(int n);
 char *ft_strnstr(const char *haystack, const char *needle, size_t len);
-
+char *ft_strmapi(const char *s, char (*f)(unsigned int, char));
+void ft_striteri(char *s, void (*f)(unsigned int, char*));
 #endif

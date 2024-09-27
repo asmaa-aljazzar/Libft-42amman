@@ -395,6 +395,7 @@ void    test_ft_memcpy()
 // ft_memmove()
 void    test_ft_memmove()
 {
+    printf("Testing ft_memmove...\n");
 
 // Test Case 1: Non-overlapping regions
     {
@@ -1581,7 +1582,7 @@ void test_ft_itoa()
 // ft_strnstr()
 void test_ft_strnstr()
 {
-     printf("Testing ft_strnstr...\n");
+    printf("Testing ft_strnstr...\n");
 
     // Test case 1: Needle is empty
     printf("\nTest case 1: Needle is empty\n");
@@ -1626,6 +1627,93 @@ void test_ft_strnstr()
     printf("\n==============================================================\n");
 }
 
+// ft_strmapi()
+// function for test it:
+char my_func(unsigned int i, char c)
+{
+    return c + i;
+}
+void test_ft_strmapi()
+{
+    printf("Testing ft_strmapi...\n");
+
+    // Test case 1: Regular string
+    printf("\nTest case 1: Regular string\n");
+    char *result = ft_strmapi("abc", my_func);
+    printf("Result: %s\n", result); // Should return "ace"
+    free(result);
+
+    // Test case 2: Empty string
+    printf("\nTest case 2: Empty string\n");
+    result = ft_strmapi("", my_func);
+    printf("Result: %s\n", result); // Should return an empty string
+    free(result);
+
+    // Test case 3: Single character
+    printf("\nTest case 3: Single character\n");
+    result = ft_strmapi("z", my_func);
+    printf("Result: %s\n", result); // Should return "z"
+    free(result);
+
+    // Test case 4: NULL input string
+    printf("\nTest case 4: NULL input string\n");
+    result = ft_strmapi(NULL, my_func);
+    printf("Result: %s\n", result); // Should return NULL
+
+    // Test case 5: Testing with special characters
+    printf("\nTest case 5: Special characters\n");
+    result = ft_strmapi("!@#", my_func);
+    printf("Result: %s\n", result); // Should return "!B%"
+    free(result);
+
+    // Test case 6: Longer string
+    printf("\nTest case 6: Longer string\n");
+    result = ft_strmapi("Hello, World!", my_func);
+    printf("Result: %s\n", result); // Example output could be "Hfnos6,Ytrqi3"
+    free(result);
+
+    printf("\n==============================================================\n");
+}
+
+// ft_striteri()
+// functions for test it:
+void to_uppercase(unsigned int i, char *c)
+{
+    if (*c >= 'a' && *c <= 'z')
+        *c = *c - 32; 
+    printf("Index: %d, Character: %c\n", i, *c);
+}
+void increment_by_index(unsigned int i, char *c)
+{
+    *c = *c + i;
+    printf("Index: %d, Character: %c\n", i, *c);
+}
+void test_ft_striteri()
+{
+    char str1[] = "hello";
+    char str2[] = "world";
+    char str3[] = "!@#$";
+
+    printf("Testing ft_striteri...\n");
+
+    // Test case 1: Convert to uppercase
+    printf("\nTest case 1: Convert to uppercase\n");
+    ft_striteri(str1, to_uppercase);
+    printf("Result: %s\n", str1);  // Should return "HELLO"
+
+    // Test case 2: Increment by index
+    printf("\nTest case 2: Increment by index\n");
+    ft_striteri(str2, increment_by_index);
+    printf("Result: %s\n", str2);  // Example result could be something like "wtroh" depending on ASCII values
+
+    // Test case 3: Special characters
+    printf("\nTest case 3: Special characters\n");
+    ft_striteri(str3, increment_by_index);
+    printf("Result: %s\n", str3);  // Example result will depend on ASCII manipulation
+
+    printf("\n==============================================================\n");
+}
+
 int    main()
 {
     // mandatory
@@ -1634,8 +1722,6 @@ int    main()
     test_ft_isalnum();
     test_ft_isascii();
     test_ft_isprint();
-    test_ft_toupper();
-    test_ft_tolower();
     test_ft_strlen();
     test_ft_memset();
     test_ft_bzero();
@@ -1643,11 +1729,14 @@ int    main()
     test_ft_memmove();
     test_ft_strlcpy();
     test_ft_strlcat();
+    test_ft_toupper();
+    test_ft_tolower();
     test_ft_strchr();
     test_ft_strrchr();
     test_ft_strncmp();
-    test_ft_memcmp();
     test_ft_memchr();
+    test_ft_memcmp();
+    test_ft_strnstr();
     test_ft_atoi();
     test_ft_calloc();
     test_ft_strdup();
@@ -1655,11 +1744,12 @@ int    main()
     test_ft_strjoin();
     test_ft_strtrim();
     test_ft_split();
+    test_ft_itoa();
+    test_ft_strmapi(); //TODO
+    test_ft_striteri(); //TODO
     test_ft_putchar_fd();
     test_ft_putstr_fd();
     test_ft_putendl_fd();
     test_ft_putnbr_fd();
-    test_ft_itoa();
-    test_ft_strnstr();
     return (0);
 }
