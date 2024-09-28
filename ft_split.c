@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:38:48 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:38:56 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
-static int	safe_malloc(char **arr, int position, size_t size);
-static int	fill(char **arr, char const *str, char delimeter);
 static size_t	count_words(char const *str, char delimeter);
+static int		safe_malloc(char **arr, int position, size_t size);
+static int		fill(char **arr, char const *str, char delimeter);
 
 char	**ft_split(char const *str, char c)
 {
@@ -42,7 +53,7 @@ static int	safe_malloc(char **arr, int position, size_t size)
 static int	fill(char **arr, char const *str, char delimeter)
 {
 	size_t	word_len;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (*str)
@@ -69,7 +80,7 @@ static int	fill(char **arr, char const *str, char delimeter)
 static size_t	count_words(char const *str, char delimeter)
 {
 	size_t	word;
-	int	inside_word;
+	int		inside_word;
 
 	word = 0;
 	while (*str)

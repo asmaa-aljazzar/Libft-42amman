@@ -1,17 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:31:47 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:32:14 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 /*
 * Fill memory bytes by zeros
 */
 void	ft_bzero(void *ptr, size_t len)
 {
-	char	*temp;
+	unsigned char	*temp;
 
-	if (ptr == NULL)
-	{
-		write (1, "Null ", 5);
-		return ;
-	}
-	temp = (char *)ptr;
+	temp = (unsigned char *)ptr;
 	while (len > 0)
 	{
 		*temp++ = 0;

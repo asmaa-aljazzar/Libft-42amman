@@ -1,20 +1,21 @@
-//  include guard ( prevent header from including multiple definition )
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 14:15:55 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 14:16:10 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
 //  Function Prototypes
-int	ft_isalpha(int c);
-int	ft_isdigit(int c);
-int	ft_isalnum(int c);
-int	ft_isascii(int c);
-int	ft_isprint(int c);
-int	ft_toupper(int c);
-int	ft_tolower(int c);
-int	ft_atoi(const char *str);
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
-int	ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memset(void *ptr, int value, size_t len);
 void	ft_bzero(void *ptr, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
@@ -25,6 +26,16 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_isalpha(int c);
+int		ft_isdigit(int c);
+int		ft_isalnum(int c);
+int		ft_isascii(int c);
+int		ft_isprint(int c);
+int		ft_toupper(int c);
+int		ft_tolower(int c);
+int		ft_atoi(const char *str);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);

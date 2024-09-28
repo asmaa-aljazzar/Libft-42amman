@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:34:52 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:34:58 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
 static int	length(long nbr);
@@ -5,10 +16,10 @@ static char	*allocate(int len);
 
 char	*ft_itoa(int n)
 {
-	int	len;
-	int	i;
-	char	*result;
 	long	nbr;
+	int		len;
+	int		i;
+	char	*result;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));

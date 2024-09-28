@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:41:25 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:41:33 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 // This function count the number of characters in a string
 size_t	ft_strlen(const char *str)
@@ -5,17 +16,9 @@ size_t	ft_strlen(const char *str)
 	int	counter;
 
 	counter = 0;
-	if (str == NULL)
+	while (*str++ != '\0')
 	{
-		write(1, "NULL pointer:", 13);
-		return (0);
+		counter++;
 	}
-	else
-	{
-		while (*str++ != '\0')
-		{
-			counter++;
-		}
-		return (counter);
-	}
+	return (counter);
 }

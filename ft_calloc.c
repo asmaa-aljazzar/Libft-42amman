@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:32:26 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:32:35 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 
 /*
@@ -6,20 +17,16 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*temp;
-	unsigned int	i;
-	unsigned int	total;
+	size_t			i;
 
-	total = count * size;
 	i = 0;
-	temp = malloc(total);
-	if (count == 0 || size == 0)
-		return (NULL);
+	temp = malloc(count * size);
 	if (!temp)
 		return (NULL);
-	while (i < total)
+	while (i < count * size)
 	{
 		temp[i] = 0;
 		i++;
 	}
-	return ((void *)temp);
+	return (temp);
 }

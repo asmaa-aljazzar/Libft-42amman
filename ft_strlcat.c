@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:40:35 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:40:46 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 /*
 * Concatenates the source string (src)
@@ -9,22 +20,23 @@
 */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	src_size;
-	size_t	dst_size;
+	size_t	srclen;
+	size_t	dstlen;
 
-	src_size = ft_strlen(src);
-	dst_size = ft_strlen(dst);
-	if (dst_size >= dstsize)
-		dst_size = dstsize;
-	if (dst_size == dstsize)
-		return (dstsize + src_size);
-	if (src_size < dstsize - dst_size)
+	srclen = ft_strlen(src);
+	dstlen = ft_strlen(dst);
+	if (dstlen >= dstsize)
+		dstlen = dstsize;
+	if (dstlen == dstsize)
+		return (dstsize + srclen);
+	if (srclen < dstsize - dstlen)
 	{
-		ft_memcpy(dst, src, src_size);
+		ft_memcpy(dst + dstlen, src, srclen + 1);
 	}
 	else
 	{
-		ft_memcpy(dst, src, dstsize - dst_size - 1);
+		ft_memcpy(dst + dstlen, src, dstsize - dstlen - 1);
+		dst[dstsize - 1] = '\0';
 	}
-	return (dst_size + src_size);
+	return (dstlen + srclen);
 }

@@ -1,4 +1,15 @@
-CC = gcc
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/28 14:15:22 by aaljazza          #+#    #+#              #
+#    Updated: 2024/09/28 14:15:43 by aaljazza         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a
 SRCS = ft_isalnum.c ft_isalpha.c ft_isascii.c\
@@ -14,7 +25,7 @@ SRCS = ft_isalnum.c ft_isalpha.c ft_isascii.c\
 
 OBJS = $(SRCS:%.c=%.o)
 
-all: $(NAME) test
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
@@ -22,14 +33,12 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-test: $(NAME) $(SRCS) test-libft.c
-	$(CC) -o test test-libft.c -L. -lft
-	./test
-
 clean:
-	rm -f $(OBJS) test
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: fclean clean all re

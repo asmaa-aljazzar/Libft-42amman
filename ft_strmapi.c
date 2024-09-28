@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:41:58 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:42:08 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 /*
 * Applay function to every character of string
@@ -6,7 +17,7 @@
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
 	unsigned int	i;
-	char	*result;
+	char			*result;
 
 	if (!s)
 		return (NULL);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:44:17 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:44:29 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 /*
 Allocates (with malloc(3)) and returns a substring
@@ -11,13 +22,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	slen;
 	unsigned int	i;
-	char	*sub;
+	char			*sub;
 
 	if (!s)
 		return (NULL);
 	slen = ft_strlen(s);
 	if (start >= slen)
-		return (strdup(""));
+		return (ft_strdup(""));
 	if (len > slen - start)
 		len = slen - start;
 	sub = malloc(len + 1);

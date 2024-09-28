@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aaljazza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/28 13:39:08 by aaljazza          #+#    #+#             */
+/*   Updated: 2024/09/28 13:39:14 by aaljazza         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
 /*
 * Search for specific char ( first appearing )
@@ -5,8 +16,8 @@
 */
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-	unsigned char	ch;
+	unsigned int	i;
+	char			ch;
 
 	i = 0;
 	ch = (char)c;
