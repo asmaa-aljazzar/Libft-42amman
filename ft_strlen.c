@@ -13,7 +13,7 @@
 // This function count the number of characters in a string
 size_t	ft_strlen(const char *str)
 {
-	int	counter;
+	size_t	counter;
 
 	counter = 0;
 	while (*str++ != '\0')

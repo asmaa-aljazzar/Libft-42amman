@@ -38,7 +38,7 @@ static char	*find_string(const char *haystack, const char *needle, size_t len)
 		while (haystack[h + n] == needle[n] && haystack[h + n] && (h + n) < len)
 		{
 			n++;
-			if (needle[n] == 0)
+			if (needle[n] == '\0')
 				return ((char *)haystack + h);
 		}
 		h++;

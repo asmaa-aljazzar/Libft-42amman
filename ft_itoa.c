@@ -11,34 +11,33 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static int	length(long nbr);
+static int	ftlength(int n);
 static char	*allocate(int len);
 
 char	*ft_itoa(int n)
 {
-	long	nbr;
 	int		len;
 	int		i;
 	char	*result;
 
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
-	nbr = n;
-	len = length(nbr);
+	len = ftlength(n);
 	result = allocate(len);
 	if (!result)
 		return (NULL);
-	if (nbr < 0)
-		nbr = -nbr;
-	i = len - 1;
-	while (nbr != 0)
+	if (n < 0)
 	{
-		result[i] = ((nbr % 10) + 48);
-		nbr = nbr / 10;
+		result[0] = '-';
+		n = -n;
+	}
+	i = len - 1;
+	while (n != 0)
+	{
+		result[i] = ((n % 10) + 48);
+		n = n / 10;
 		i--;
 	}
-	if (n < 0)
-		result[0] = '-';
 	result[len] = 0;
 	return (result);
 }
@@ -54,21 +53,21 @@ static char	*allocate(int len)
 	return (tmp);
 }
 
-static int	length(long nbr)
+static int	ftlength(int n)
 {
 	int	count;
 
 	count = 0;
-	if (nbr < 0)
+	if (n < 0)
 	{
 		count++;
-		nbr = -nbr;
+		n = -n;
 	}
-	if (nbr == 0)
+	if (n == 0)
 		count++;
-	while (nbr != 0)
+	while (n != 0)
 	{
-		nbr /= 10;
+		n /= 10;
 		count++;
 	}
 	return (count);

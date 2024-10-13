@@ -93,7 +93,7 @@ static size_t	count_words(char const *str, char delimeter)
 			if (!inside_word)
 			{
 				++word;
-				inside_word = 42;
+				inside_word = 1;
 			}
 			++str;
 		}
